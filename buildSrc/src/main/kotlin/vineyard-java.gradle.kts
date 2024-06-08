@@ -1,9 +1,3 @@
-import gradle.kotlin.dsl.accessors._6da0708403d2554780d7bf8b84448399.compileJava
-import gradle.kotlin.dsl.accessors._6da0708403d2554780d7bf8b84448399.jar
-import gradle.kotlin.dsl.accessors._6da0708403d2554780d7bf8b84448399.publishing
-import org.gradle.kotlin.dsl.java
-import org.gradle.kotlin.dsl.publishing
-
 plugins {
     java
     `maven-publish`
