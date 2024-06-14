@@ -1,34 +1,21 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 plugins {
     java
     `maven-publish`
-    id("io.github.goooler.shadow")
+    kotlin("jvm")
 }
 
-tasks.jar {
-    enabled = false
+tasks.compileKotlin {
+    kotlinOptions.jvmTarget = "21"
 }
 
-tasks.compileJava {
-    options.encoding = "UTF-8"
-    sourceCompatibility = "21"
-    targetCompatibility = "21"
-}
-
-tasks.withType<ShadowJar> {
-    archiveClassifier = ""
-    archiveVersion = ""
-}
-
-tasks.build {
-    dependsOn(tasks.withType<ShadowJar>())
+kotlin {
+    jvmToolchain(21)
 }
 
 publishing {
     publications {
         create<MavenPublication>("Maven") {
-            shadow.component(this)
+            this.artifact(tasks.jar)
             this.groupId = "io.github.cabernetmc"
             this.version = rootProject.version.toString()
         }

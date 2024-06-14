@@ -2,7 +2,7 @@ rootProject.name = "Vineyard"
 
 gradle.rootProject {
     this.version = "1.0.0-SNAPSHOT"
-    this.group = "com.github.cabernetmc"
+    this.group = "io.github.cabernetmc"
 }
 
 dependencyResolutionManagement {
