@@ -8,6 +8,8 @@ import io.github.cabernetmc.execution.step.VineyardRemapExecution;
 import io.github.cabernetmc.meta.MinecraftVersion;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.function.Predicate;
+
 /**
  * Factory class used to streamline creation of different VineyardExecutions
  */
@@ -69,6 +71,17 @@ public final class VineyardExecutionFactory {
      */
     public VineyardDecompileExecution createDecompileExecution(@NotNull final MinecraftVersion version) {
         return new VineyardDecompileExecution(this.settings, version);
+    }
+
+    /**
+     * Creates a decompile execution
+     *
+     * @param version        the MinecraftVersion metadata
+     * @param jarEntryFilter filters the entries extracted from the jar
+     * @return the decompile execution
+     */
+    public VineyardDecompileExecution createDecompileExecution(@NotNull final MinecraftVersion version, @NotNull final Predicate<String> jarEntryFilter) {
+        return new VineyardDecompileExecution(this.settings, version, jarEntryFilter);
     }
 
 }

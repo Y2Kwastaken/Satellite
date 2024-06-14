@@ -12,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.function.Predicate;
 
 import static io.github.cabernetmc.util.Result.failure;
 import static io.github.cabernetmc.util.Result.success;
@@ -24,16 +25,29 @@ public class VineyardDecompileExecution implements Results<Boolean, IllegalState
 
     private final VineyardExecutionSettings settings;
     private final MinecraftVersion version;
+    private final Predicate<String> jarEntryFilter;
+
+    /**
+     * Creates a new execution
+     *
+     * @param settings       the settings
+     * @param version        the version metadata
+     * @param jarEntryFilter a filter which decides which jar entries are extracted
+     */
+    public VineyardDecompileExecution(@NotNull final VineyardExecutionSettings settings, @NotNull final MinecraftVersion version, Predicate<String> jarEntryFilter) {
+        this.settings = settings;
+        this.version = version;
+        this.jarEntryFilter = jarEntryFilter;
+    }
 
     /**
      * Creates a new execution
      *
      * @param settings the settings
-     * @param version  the version metadata
+     * @param version  the version
      */
     public VineyardDecompileExecution(@NotNull final VineyardExecutionSettings settings, @NotNull final MinecraftVersion version) {
-        this.settings = settings;
-        this.version = version;
+        this(settings, version, (s) -> s.contains("com/mojang") || s.contains("net/minecraft"));
     }
 
     @Override
@@ -50,7 +64,7 @@ public class VineyardDecompileExecution implements Results<Boolean, IllegalState
             if (Files.notExists(decompileClasses)) {
                 settings.whenDebug(VineyardConstants.LOG_CREATE_DECOMPILE_CLASSES_DIRECTORIES);
                 Files.createDirectories(decompileClasses);
-                VineyardUtils.unzip(remappedServer, decompileClasses, (s) -> s.contains("com/mojang") || s.contains("net/minecraft"));
+                VineyardUtils.unzip(remappedServer, decompileClasses, this.jarEntryFilter);
             }
 
             final Path decompileJava = decompile.resolve("java");
