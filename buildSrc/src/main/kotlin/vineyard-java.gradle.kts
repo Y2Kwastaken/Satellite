@@ -1,13 +1,6 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 plugins {
-    java
+    `java-library`
     `maven-publish`
-    id("io.github.goooler.shadow")
-}
-
-tasks.jar {
-    enabled = false
 }
 
 tasks.compileJava {
@@ -16,19 +9,10 @@ tasks.compileJava {
     targetCompatibility = "21"
 }
 
-tasks.withType<ShadowJar> {
-    archiveClassifier = ""
-    archiveVersion = ""
-}
-
-tasks.build {
-    dependsOn(tasks.withType<ShadowJar>())
-}
-
 publishing {
     publications {
         create<MavenPublication>("Maven") {
-            shadow.component(this)
+            this.artifact(tasks.jar)
             this.groupId = "io.github.cabernetmc"
             this.version = rootProject.version.toString()
         }

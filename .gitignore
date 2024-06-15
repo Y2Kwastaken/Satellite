@@ -18,3 +18,5 @@ gradle-app.setting
 buildSrc/build/
 
 vineyard-core/build/
+
+vineyard-gradle-plugin/build/

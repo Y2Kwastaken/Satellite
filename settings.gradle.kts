@@ -1,4 +1,4 @@
-rootProject.name = "Vineyard"
+rootProject.name = "vineyard"
 
 gradle.rootProject {
     this.version = "1.0.0-SNAPSHOT"
