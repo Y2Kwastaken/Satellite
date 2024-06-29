@@ -17,6 +17,19 @@ import java.util.Objects;
 public sealed class Result<R, E extends Exception> {
 
     /**
+     * Unwraps a result in an unsafe manner
+     *
+     * @return the result
+     * @throws E the thrown exception if unwrap fails
+     */
+    public R unwrap() throws E {
+        if (this instanceof Result.Success<R, E> success) {
+            return success.result;
+        }
+        throw new RuntimeException(((Failure<R, E>) this).exception);
+    }
+
+    /**
      * Creates a new result that was a success
      *
      * @param result the result

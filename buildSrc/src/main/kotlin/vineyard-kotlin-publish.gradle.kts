@@ -1,49 +1,20 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 plugins {
+    `maven-publish`
     id("org.jetbrains.kotlin.jvm")
     id("io.github.goooler.shadow")
-    id("com.gradle.plugin-publish")
 }
 
-val shade: Configuration by configurations.creating
-configurations.implementation {
-    extendsFrom(shade)
+tasks.jar {
+    archiveClassifier = "raw"
+    enabled = false
 }
 
-fun ShadowJar.configureStandard() {
-    configurations = listOf(shade)
-
-    dependencies {
-        exclude(dependency("org.jetbrains.kotlin:.*:.*"))
-    }
-
-    exclude(
-        "META-INF/*.SF",
-        "META-INF/*.DSA",
-        "META-INF/*.RSA",
-        "OSGI-INF/**",
-        "*.profile",
-        "module-info.class",
-        "ant_tasks/**"
-    )
-
-    mergeServiceFiles()
-}
-
-tasks.existing(AbstractArchiveTask::class) {
-    from(
-        zipTree(
-            project(":vineyard-core").tasks.named("sourcesJar", AbstractArchiveTask::class).flatMap { it.archiveFile }
-        )
-    ) {
-        exclude("META-INF/**")
-    }
-}
-
-tasks.existing(ShadowJar::class) {
+tasks.shadowJar {
     archiveClassifier = ""
-    configureStandard()
+}
+
+tasks.build {
+    dependsOn(tasks.shadowJar)
 }
 
 publishing {

@@ -3,10 +3,12 @@ plugins {
     `maven-publish`
 }
 
-tasks.compileJava {
-    options.encoding = "UTF-8"
-    sourceCompatibility = "21"
-    targetCompatibility = "21"
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
 }
 
 publishing {

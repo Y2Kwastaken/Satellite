@@ -4,7 +4,12 @@ plugins {
 }
 
 dependencies {
-    shade(project(":vineyard-core"))
+    compileOnly(gradleApi())
+    implementation(project(":vineyard-core"))
+}
+
+tasks.build {
+    dependsOn(tasks.shadowJar)
 }
 
 gradlePlugin {

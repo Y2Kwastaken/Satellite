@@ -4,7 +4,7 @@ plugins {
 
 dependencies {
     compileOnly(libs.jetbrains.annotations)
-    api(libs.gson)
-    api(libs.tiny.remapper)
-    api(libs.mapping.io)
+    implementation(libs.gson)
+    implementation(libs.tiny.remapper)
+    implementation(libs.mapping.io)
 }
