@@ -1,0 +1,106 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "io.github.cabernetmc",
+    "module": "vineyard-common",
+    "version": "1.0.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.8"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "com.google.code.gson",
+          "module": "gson",
+          "version": {
+            "requires": "2.11.0"
+          }
+        },
+        {
+          "group": "net.fabricmc",
+          "module": "tiny-remapper",
+          "version": {
+            "requires": "0.10.3"
+          }
+        },
+        {
+          "group": "net.fabricmc",
+          "module": "mapping-io",
+          "version": {
+            "requires": "0.6.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "vineyard-common-1.0.0-SNAPSHOT.jar",
+          "url": "vineyard-common-1.0.0-SNAPSHOT.jar",
+          "size": 47295,
+          "sha512": "42cb764e7fe53170237cb19109000c4c06196f614ac8868b519759d8d5e99b3f652bc7cc9bd985cbcd11f825aa5e1710236ada9d507c17dabed58bfc6decf275",
+          "sha256": "925f536029abf588826a28ecbdb62b6008f4512505408bb76d6bb130e80e7881",
+          "sha1": "9106a484d6e0a4d9fed33af4993d673c3caf7458",
+          "md5": "d892fa5bc6c0302c826a2e8da8e05942"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.google.code.gson",
+          "module": "gson",
+          "version": {
+            "requires": "2.11.0"
+          }
+        },
+        {
+          "group": "net.fabricmc",
+          "module": "tiny-remapper",
+          "version": {
+            "requires": "0.10.3"
+          }
+        },
+        {
+          "group": "net.fabricmc",
+          "module": "mapping-io",
+          "version": {
+            "requires": "0.6.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "vineyard-common-1.0.0-SNAPSHOT.jar",
+          "url": "vineyard-common-1.0.0-SNAPSHOT.jar",
+          "size": 47295,
+          "sha512": "42cb764e7fe53170237cb19109000c4c06196f614ac8868b519759d8d5e99b3f652bc7cc9bd985cbcd11f825aa5e1710236ada9d507c17dabed58bfc6decf275",
+          "sha256": "925f536029abf588826a28ecbdb62b6008f4512505408bb76d6bb130e80e7881",
+          "sha1": "9106a484d6e0a4d9fed33af4993d673c3caf7458",
+          "md5": "d892fa5bc6c0302c826a2e8da8e05942"
+        }
+      ]
+    }
+  ]
+}

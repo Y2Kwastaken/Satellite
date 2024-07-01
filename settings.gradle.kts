@@ -1,5 +1,4 @@
-rootProject.name = "vineyard"
-
+rootProject.name = "Vineyard"
 gradle.rootProject {
     this.version = "1.0.0-SNAPSHOT"
     this.group = "io.github.cabernetmc"
@@ -7,7 +6,6 @@ gradle.rootProject {
 
 dependencyResolutionManagement {
     repositories {
-        mavenLocal()
         mavenCentral()
         maven("https://maven.fabricmc.net")
     }

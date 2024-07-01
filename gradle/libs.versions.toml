@@ -1,19 +1,18 @@
 [versions]
-jetbrains-annotations-ver = "24.0.1"
+# Plugins
+kotlin-jvm-ver = "1.9.22"
+# Libraries
+gson-ver = "2.11.0"
 mapping-io-ver = "0.6.1"
 tiny-remapper-ver = "0.10.3"
-gson-ver = "2.11.0"
-
-gradle-shadow-ver = "8.1.7"
-gradle-plugin-publish-ver = "1.2.1"
+jetbrains-annotations-ver = "24.0.1"
 
 [libraries]
-jetbrains-annotations = { module = "org.jetbrains:annotations-java5", version.ref = "jetbrains-annotations-ver" }
-mapping-io = { module = "net.fabricmc:mapping-io", version.ref = "mapping-io-ver" }
-tiny-remapper = { module = "net.fabricmc:tiny-remapper", version.ref = "tiny-remapper-ver" }
+annotations = { module = "org.jetbrains:annotations-java5", version.ref = "jetbrains-annotations-ver" }
+mappingio = { module = "net.fabricmc:mapping-io", version.ref = "mapping-io-ver" }
+remapper = { module = "net.fabricmc:tiny-remapper", version.ref = "tiny-remapper-ver" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson-ver" }
 
-gradle-shadow-plugin = { module = "io.github.goooler.shadow:shadow-gradle-plugin", version.ref = "gradle-shadow-ver" }
-gradle-kotlin-dsl-plugin = { module = "org.gradle.kotlin.kotlin-dsl:org.gradle.kotlin.kotlin-dsl.gradle.plugin" }
-gradle-kotlin-plugin = { module = "org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin" }
-gradle-plugin-publish-plugin = { module = "com.gradle.publish:plugin-publish-plugin", version.ref = "gradle-plugin-publish-ver" }
+
+[plugins]
+jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-jvm-ver" }
