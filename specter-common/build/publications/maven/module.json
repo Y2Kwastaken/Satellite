@@ -1,0 +1,92 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "io.github.cabernetmc",
+    "module": "vineyard-common",
+    "version": "1.0.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.8"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "net.fabricmc",
+          "module": "tiny-remapper",
+          "version": {
+            "requires": "0.10.3"
+          }
+        },
+        {
+          "group": "net.fabricmc",
+          "module": "mapping-io",
+          "version": {
+            "requires": "0.6.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "vineyard-common-1.0.0-SNAPSHOT.jar",
+          "url": "vineyard-common-1.0.0-SNAPSHOT.jar",
+          "size": 3834,
+          "sha512": "d20c57b29ef9876ea46dcd42291f8fcad2724e7e7539d8974eadab54d53a83fdec4248443256872da98f0ffa14d6cf6825c78a30b699327169baecb74d4dff13",
+          "sha256": "e2f0cf865f98e42ef5b4df826c47a994bf6b53d70c8af113a60923390ca5e4c6",
+          "sha1": "5bdba663edf44b84da1c5cde5d95176d5cb41453",
+          "md5": "301cca931898a29ec596ed510baedd0c"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "net.fabricmc",
+          "module": "tiny-remapper",
+          "version": {
+            "requires": "0.10.3"
+          }
+        },
+        {
+          "group": "net.fabricmc",
+          "module": "mapping-io",
+          "version": {
+            "requires": "0.6.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "vineyard-common-1.0.0-SNAPSHOT.jar",
+          "url": "vineyard-common-1.0.0-SNAPSHOT.jar",
+          "size": 3834,
+          "sha512": "d20c57b29ef9876ea46dcd42291f8fcad2724e7e7539d8974eadab54d53a83fdec4248443256872da98f0ffa14d6cf6825c78a30b699327169baecb74d4dff13",
+          "sha256": "e2f0cf865f98e42ef5b4df826c47a994bf6b53d70c8af113a60923390ca5e4c6",
+          "sha1": "5bdba663edf44b84da1c5cde5d95176d5cb41453",
+          "md5": "301cca931898a29ec596ed510baedd0c"
+        }
+      ]
+    }
+  ]
+}
