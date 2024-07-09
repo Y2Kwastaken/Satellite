@@ -1,18 +1,18 @@
-package io.github.orbitemc.task
+package io.github.orbitemc.task.server
 
 import io.github.orbitemc.BOOTSTRAP_JAR_META_LOC
 import io.github.orbitemc.LIBRARIES_LIST_META_LOC
-import io.github.orbitemc.SATELLITE
 import io.github.orbitemc.SatelliteUtils
 import io.github.orbitemc.getVersionBootstrapFile
 import io.github.orbitemc.getVersionLibrariesFile
-import io.github.orbitemc.getVersionServerFile
+import io.github.orbitemc.getVersionServerObfuscatedFile
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.TaskAction
+import java.nio.file.Files
 
 abstract class ExtractMinecraftBootstrapJar : DefaultTask() {
 
@@ -22,22 +22,24 @@ abstract class ExtractMinecraftBootstrapJar : DefaultTask() {
     @get:OutputDirectory
     abstract val outputDirectory: RegularFileProperty
 
-    init {
-        outputDirectory.convention { project.file(SATELLITE) }
-    }
-
     @TaskAction
     fun execute() {
         val output = outputDirectory.get().asFile.toPath()
         val bootstrap = getVersionBootstrapFile(output, minecraftVersion.get())
-        SatelliteUtils.jarExtract(
-            bootstrap,
-            getVersionServerFile(output, minecraftVersion.get()),
-            BOOTSTRAP_JAR_META_LOC.format(minecraftVersion.get(), minecraftVersion.get())
-        )
-        SatelliteUtils.jarExtract(
-            bootstrap, getVersionLibrariesFile(output, minecraftVersion.get()), LIBRARIES_LIST_META_LOC
-        )
+        val obfuscatedJarFile = getVersionServerObfuscatedFile(output, minecraftVersion.get())
+        if (Files.notExists(obfuscatedJarFile)) {
+            SatelliteUtils.jarExtract(
+                bootstrap,
+                obfuscatedJarFile,
+                BOOTSTRAP_JAR_META_LOC.format(minecraftVersion.get(), minecraftVersion.get())
+            )
+        }
+        val librariesList = getVersionLibrariesFile(output, minecraftVersion.get())
+        if (Files.notExists(librariesList)) {
+            SatelliteUtils.jarExtract(
+                bootstrap, librariesList, LIBRARIES_LIST_META_LOC
+            )
+        }
     }
 
 }

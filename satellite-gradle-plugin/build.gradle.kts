@@ -5,18 +5,25 @@ plugins {
     alias(libs.plugins.jvm)
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
 dependencies {
-    implementation(project(":specter-common"))
+    implementation(project(":satellite-common"))
     implementation(libs.gradle.download)
     implementation(libs.metatrace)
+    implementation(libs.diffpatch)
 }
 
 gradlePlugin {
     val vineyard by plugins.creating {
-        id = "io.github.kryptidemc.specter"
-        implementationClass = "io.github.kryptidemc.SpecterPlugin"
-        displayName = "Specter"
-        description = "Provides an environment for KryptideMC"
+        id = "io.github.orbitemc.satellite"
+        implementationClass = "io.github.orbitemc.SatellitePlugin"
+        displayName = "Satellite"
+        description = "Provides an environment for OrbitMC"
     }
 }
 
@@ -29,4 +36,8 @@ publishing {
             }
         }
     }
+}
+
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor(0, "seconds")
 }

@@ -1,7 +1,7 @@
-rootProject.name = "Specter"
+rootProject.name = "Satellite"
 gradle.rootProject {
     this.version = "1.0.0-SNAPSHOT"
-    this.group = "io.github.kryptidemc"
+    this.group = "io.github.orbitemc"
 }
 
 dependencyResolutionManagement {

@@ -1,7 +1,6 @@
-package io.github.orbitemc.task
+package io.github.orbitemc.task.server
 
 import de.undercouch.gradle.tasks.download.DownloadExtension
-import io.github.orbitemc.SATELLITE
 import io.github.orbitemc.getVersionBootstrapFile
 import io.github.orbitemc.getVersionMetaFile
 import io.github.orbitemc.metatrace.MetaTrace
@@ -14,6 +13,7 @@ import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.TaskAction
+import java.nio.file.Files
 
 abstract class DownloadMinecraftBootstrapJar : DefaultTask() {
 
@@ -22,10 +22,6 @@ abstract class DownloadMinecraftBootstrapJar : DefaultTask() {
 
     @get:OutputDirectory
     abstract val outputDirectory: RegularFileProperty
-
-    init {
-        outputDirectory.convention { project.file(SATELLITE) }
-    }
 
     @TaskAction
     fun execute() {
@@ -36,9 +32,11 @@ abstract class DownloadMinecraftBootstrapJar : DefaultTask() {
         val server = version.data.downloadEntries[VersionData.SERVER]
             ?: throw GradleException("No entry for \"server\" was found within this version!")
         if (!server.isValid) throw GradleException("The server version is not valid because of mismatched sha values")
+        val outputFile = getVersionBootstrapFile(outputDirectory.get().asFile.toPath(), minecraftVersion.get()).toFile()
+        if (outputFile.exists()) return
         project.extensions.getByType(DownloadExtension::class.java).run {
             src(server.url)
-            dest(getVersionBootstrapFile(outputDirectory.get().asFile.toPath(), minecraftVersion.get()).toFile())
+            dest(outputFile)
             overwrite(false)
         }
     }

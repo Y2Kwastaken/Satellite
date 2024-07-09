@@ -22,3 +22,7 @@ vineyard-core/build/
 vineyard-gradle-plugin/build/
 
 vineyard-work/
+
+satellite-common/build/
+
+satellite-gradle-plugin/build/

@@ -3,6 +3,12 @@ plugins {
     `maven-publish`
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
 dependencies {
     compileOnly(libs.annotations)
     api(libs.remapper)

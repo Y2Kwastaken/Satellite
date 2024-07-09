@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 /**
  * Provides useful functions regarding remapping
  */
-public final class SpecterRemapper {
+public final class SatelliteRemapper {
 
     /*
      * Thanks fabric team
@@ -29,6 +29,10 @@ public final class SpecterRemapper {
             "javax/annotation/Nonnull", "org/jetbrains/annotations/NotNull",
             "javax/annotation/concurrent/Immutable", "org/jetbrains/annotations/Unmodifiable");
     private static final Pattern MC_LV_PATTERN = Pattern.compile("\\$\\$\\d+");
+
+    private SatelliteRemapper() {
+        throw new UnsupportedOperationException("Can not initialize utility class %s".formatted(getClass()));
+    }
 
     /**
      * Converts the mappings at the provided mappings path to fabric's tinyMappings

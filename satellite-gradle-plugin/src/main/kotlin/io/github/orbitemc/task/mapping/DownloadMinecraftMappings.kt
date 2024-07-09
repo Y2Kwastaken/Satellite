@@ -1,7 +1,6 @@
-package io.github.orbitemc.task.server
+package io.github.orbitemc.task.mapping
 
 import de.undercouch.gradle.tasks.download.DownloadExtension
-import io.github.orbitemc.SATELLITE
 import io.github.orbitemc.getVersionMetaFile
 import io.github.orbitemc.getVersionProguardMappingFile
 import io.github.orbitemc.metatrace.MetaTrace
@@ -23,10 +22,6 @@ abstract class DownloadMinecraftMappings : DefaultTask() {
     @get:OutputDirectory
     abstract val outputDirectory: RegularFileProperty
 
-    init {
-        outputDirectory.convention { project.file(SATELLITE) }
-    }
-
     @TaskAction
     fun execute() {
         val file = getVersionMetaFile(outputDirectory.get().asFile.toPath(), minecraftVersion.get())
@@ -36,11 +31,14 @@ abstract class DownloadMinecraftMappings : DefaultTask() {
         val serverMappings = version.data.downloadEntries[VersionData.SERVER_MAPPINGS]
             ?: throw GradleException("No entry for \"server-mappings\" was found within this version!")
         if (!serverMappings.isValid) throw GradleException("The server mappings are not valid because of mismatched sha values")
+        val outputFile = getVersionProguardMappingFile(outputDirectory.get().asFile.toPath(), minecraftVersion.get()).toFile()
+        if (outputFile.exists()) return
         project.extensions.getByType(DownloadExtension::class.java).run {
             src(serverMappings.url)
-            dest(getVersionProguardMappingFile(outputDirectory.get().asFile.toPath(), minecraftVersion.get()).toFile())
+            dest(outputFile)
             overwrite(false)
         }
     }
+
 
 }
