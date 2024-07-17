@@ -12,3 +12,17 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
+
+.idea/
+
+buildSrc/build/
+
+vineyard-core/build/
+
+vineyard-gradle-plugin/build/
+
+vineyard-work/
+
+satellite-common/build/
+
+satellite-gradle-plugin/build/
