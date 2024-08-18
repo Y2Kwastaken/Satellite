@@ -9,6 +9,7 @@ const val SATELLITE_ASSEMBLE_PROJECT_TASK = "assemble-project"
 const val SATELLITE_SETUP_TASK = "setup"
 const val SATELLITE_BUILD_PATCHES_TASK = "buildPatches"
 const val SATELLITE_APPLY_PATCHES_TASK = "applyPatches"
+const val SATELLITE_APPLY_PATCHES_FUZZY_TASK = "applyPatchesFuzzy"
 
 const val SATELLITE_ASSEMBLE_CATEGORY = "$SATELLITE-assemble"
 const val SATELLITE_GENERATE_VERSIONS_LIST_TASK = "generateVersionsList"

@@ -10,6 +10,7 @@ import io.github.orbitemc.task.build.GenerateVersionsList
 import io.github.orbitemc.task.mapping.ConvertMinecraftMappings
 import io.github.orbitemc.task.mapping.DownloadMinecraftMappings
 import io.github.orbitemc.task.patch.ApplyPatches
+import io.github.orbitemc.task.patch.ApplyPatchesFuzzy
 import io.github.orbitemc.task.patch.BuildPatches
 import io.github.orbitemc.task.server.DownloadMinecraftBootstrapJar
 import io.github.orbitemc.task.server.ExtractMinecraftBootstrapJar
@@ -184,7 +185,22 @@ class SatellitePlugin : Plugin<Project> {
                     satellite.workingDirectory.asPath(), satellite.minecraftVersion.get()
                 ).toFile()
             )
+            failedOutput.set(project.file("failed-patches"))
             patchDirectory.set(project.file("patches"))
+        }
+
+        project.tasks.register(SATELLITE_APPLY_PATCHES_FUZZY_TASK, ApplyPatchesFuzzy::class.java) {
+            group = SATELLITE_CATEGORY
+
+            javaSource.set(project.file("src/main/java"))
+            decompileSource.set(
+                getJavaFolder(
+                    satellite.workingDirectory.asPath(), satellite.minecraftVersion.get()
+                ).toFile()
+            )
+            failedOutput.set(project.file("failed-patches"))
+            patchDirectory.set(project.file("patches"))
+            minFuzz.set(0.5F)
         }
 
         val javaExtension = project.extensions.getByType(JavaPluginExtension::class.java)
